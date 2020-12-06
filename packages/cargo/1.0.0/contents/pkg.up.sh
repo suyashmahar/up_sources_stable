@@ -7,7 +7,11 @@ up_init() {
 
 # * up_install -- Installs this package if requested
 up_install() {
-    sudo apt-get install -y cargo
+    if up_match_os "termux"; then
+	pkg install cargo
+    else
+	"$UP_SUDO" apt-get install -y cargo
+    fi
 }
 
 # * up_check -- Checks it this package can be loaded 
